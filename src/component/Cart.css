@@ -1,0 +1,13 @@
+.modal-right {
+    right: 0;
+    margin-right: 0;
+    transform: translateX(0);
+  }
+  
+  @media (min-width: 576px) {
+    .modal-right .modal-dialog {
+      max-width: 30%;
+      margin-left: auto;
+    }
+  }
+  

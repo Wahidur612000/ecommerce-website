@@ -1,5 +1,6 @@
 import React from 'react';
-import { Container, Row, Col, Card } from 'react-bootstrap';
+import { Container, Row, Col, Card, Button } from 'react-bootstrap';
+import { cartElements } from './Cart'; // Import cartElements from Cart component
 
 const productsArr = [
   {
@@ -25,6 +26,11 @@ const productsArr = [
 ];
 
 const ProductsScreen = () => {
+  const handleAddToCart = (product) => {
+    // Add product to cartElements array (you need to implement this logic)
+    console.log("Product added to cart:", product);
+  };
+
   return (
     <Container>
       <h1 className="mt-5 mb-3">Products</h1>
@@ -36,6 +42,7 @@ const ProductsScreen = () => {
               <Card.Body>
                 <Card.Title>{product.title}</Card.Title>
                 <Card.Text>${product.price}</Card.Text>
+                <Button variant="primary" onClick={() => handleAddToCart(product)}>Add to Cart</Button>
               </Card.Body>
             </Card>
           </Col>

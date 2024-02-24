@@ -2,53 +2,51 @@ import React, { useState } from 'react';
 import { Button, Modal, Table } from 'react-bootstrap';
 import './Cart.css'; // Import custom CSS file for styling
 
-const initialCartElements = [
+const productsArr = [
   {
     title: 'Colors',
     price: 100,
     imageUrl: 'https://prasadyash2411.github.io/ecom-website/img/Album%201.png',
-    quantity: 2,
+    quantity: 1,
   },
   {
     title: 'Black and white Colors',
     price: 50,
     imageUrl: 'https://prasadyash2411.github.io/ecom-website/img/Album%202.png',
-    quantity: 2,
+    quantity: 1,
   },
   {
     title: 'Yellow and Black Colors',
     price: 70,
     imageUrl: 'https://prasadyash2411.github.io/ecom-website/img/Album%203.png',
-    quantity: 2,
+    quantity: 1,
   },
   {
     title: 'Blue Color',
     price: 100,
     imageUrl: 'https://prasadyash2411.github.io/ecom-website/img/Album%204.png',
-    quantity: 2,
+    quantity: 1,
   },
 ];
 
-export const Cart = () => { // Export Cart component
+const Store = () => {
   const [showCart, setShowCart] = useState(false);
-  const [cartElements, setCartElements] = useState(initialCartElements);
+  const [cart, setCart] = useState([]);
 
   const handleClose = () => setShowCart(false);
   const handleShow = () => setShowCart(true);
 
-  const addToCart = (product) => {
-    const updatedCart = [...cartElements];
-    updatedCart.push(product);
-    setCartElements(updatedCart);
+  const handleAddToCart = (product) => {
+    setCart([...cart, { ...product }]);
   };
 
-  const removeItem = (index) => {
-    const updatedCart = [...cartElements];
+  const handleRemove = (index) => {
+    const updatedCart = [...cart];
     updatedCart.splice(index, 1);
-    setCartElements(updatedCart);
+    setCart(updatedCart);
   };
 
-  const totalItemsInCart = cartElements.reduce((total, item) => total + item.quantity, 0);
+  const totalItemsInCart = cart.reduce((total, item) => total + item.quantity, 0);
 
   return (
     <>
@@ -72,14 +70,14 @@ export const Cart = () => { // Export Cart component
               </tr>
             </thead>
             <tbody>
-              {cartElements.map((item, index) => (
+              {cart.map((item, index) => (
                 <tr key={index}>
                   <td><img src={item.imageUrl} alt={item.title} style={{ width: '50px', height: '50px' }} /></td>
                   <td>{item.title}</td>
                   <td>${item.price.toFixed(2)}</td>
                   <td>{item.quantity}</td>
                   <td>
-                    <Button variant="danger" onClick={() => removeItem(index)}>
+                    <Button variant="danger" onClick={() => handleRemove(index)}>
                       Remove
                     </Button>
                   </td>
@@ -97,8 +95,20 @@ export const Cart = () => { // Export Cart component
           </Button>
         </Modal.Footer>
       </Modal>
+      
+      <div>
+        <h1 className="mt-5 mb-3">Products</h1>
+        {productsArr.map((product, index) => (
+          <div key={index}>
+            <img src={product.imageUrl} alt={product.title} style={{ width: '50px', height: '50px' }} />
+            <span>{product.title}</span>
+            <span>${product.price}</span>
+            <Button variant="primary" onClick={() => handleAddToCart(product)}>Add to Cart</Button>
+          </div>
+        ))}
+      </div>
     </>
   );
 };
 
-export default Cart;
+export default Store;
