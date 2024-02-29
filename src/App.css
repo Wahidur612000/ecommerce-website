@@ -1,20 +1,24 @@
-/* styles.css */
+/* App.css */
 
-/* Position the modal on the right side of the screen */
-.modal-dialog.modal-right {
-  position: fixed;
-  right: 0;
-  margin-right: 0; /* Optional: adjust this value for spacing */
-}
-
-/* Ensure the modal is full height */
-.modal-content {
+.app-container {
+  display: flex;
+  flex-direction: column;
   height: 100vh;
 }
 
-/* Center the modal vertically */
-.modal-dialog.modal-right .modal-content {
+.main-content {
   display: flex;
-  flex-direction: column;
-  justify-content: center;
+  flex: 1;
 }
+
+.main-content-left {
+  flex: 2;
+  overflow-y: auto; /* Add overflow-y to handle vertical overflow */
+}
+
+.main-content-right {
+  flex: 1;
+  overflow-y: auto; /* Add overflow-y to handle vertical overflow */
+}
+
+/* Add any additional styling for your components here */

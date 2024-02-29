@@ -36,12 +36,6 @@ export const Cart = () => { // Export Cart component
   const handleClose = () => setShowCart(false);
   const handleShow = () => setShowCart(true);
 
-  const addToCart = (product) => {
-    const updatedCart = [...cartElements];
-    updatedCart.push(product);
-    setCartElements(updatedCart);
-  };
-
   const removeItem = (index) => {
     const updatedCart = [...cartElements];
     updatedCart.splice(index, 1);
@@ -52,7 +46,7 @@ export const Cart = () => { // Export Cart component
 
   return (
     <>
-      <Button variant="contained" style={{ color: 'white' }} className='abc' type='submit' onClick={handleShow}>
+      <Button variant="contained" style={{ color: 'yellow',fontFamily: 'Algerian', fontSize: '20px' }} className='abc' type='submit' onClick={handleShow}>
         Cart <sup>{totalItemsInCart}</sup>
       </Button>
 
