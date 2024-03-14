@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+// Store.js
+import React from 'react';
 import { Container, Row, Col, Card, Button } from 'react-bootstrap';
 
-// Importing product data
 const productsArr = [
   {
     title: 'Colors',
@@ -25,29 +25,11 @@ const productsArr = [
   },
 ];
 
-const Store = () => {
-  const [cartItems, setCartItems] = useState([]);
-
-    const addToCart = (product) => {
-    setCartItems(prevCartItems => {
-      const existingItem = prevCartItems.find(item => item.title === product.title);
-
-      if (existingItem) {
-        return prevCartItems.map(item => (
-          item.title === product.title ? { ...item, quantity: item.quantity + 1 } : item
-        ));
-      } else {
-        return [...prevCartItems, { ...product, quantity: 1 }];
-      }
-      
-    });
-    console.log(product);
-  };
-
+const Store = ({ addToCart }) => {
   return (
     <div>
       <div className="d-flex flex-column">
-      <div className="bg-dark text-center">
+        <div className="bg-dark text-center">
           <h1 className="mt-5 mb-3" style={{ fontFamily: 'Algerian', fontWeight: 'bold', fontSize: '80px', color: 'yellow' }}>
             Sale Spot
           </h1>
@@ -55,7 +37,6 @@ const Store = () => {
         <div className="bg-white" style={{ height: '2px' }}></div>
       </div>
 
-      {/* Product Cards */}
       <Container className="bg-white p-3">
         <h1 className="mt-5 mb-3 text-center" style={{ fontFamily: 'Algerian', fontSize: '40px' }}>Products</h1>
         <Row>
@@ -65,7 +46,7 @@ const Store = () => {
                 <Card.Img variant="top" src={product.imageUrl} />
                 <Card.Body>
                   <Card.Title>{product.title}</Card.Title>
-                  <Card.Text>${product.price}</Card.Text>
+                  <Card.Text>Rs {product.price}</Card.Text>
                   <Button variant="primary" onClick={() => addToCart(product)}>Add to Cart</Button>
                 </Card.Body>
               </Card>

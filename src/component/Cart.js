@@ -1,52 +1,19 @@
-import React, { useState } from 'react';
+// Cart.js
+import React from 'react';
 import { Button, Modal, Table } from 'react-bootstrap';
-import './Cart.css'; // Import custom CSS file for styling
+import './Cart.css';
 
-const initialCartElements = [
-  {
-    title: 'Colors',
-    price: 100,
-    imageUrl: 'https://prasadyash2411.github.io/ecom-website/img/Album%201.png',
-    quantity: 2,
-  },
-  {
-    title: 'Black and white Colors',
-    price: 50,
-    imageUrl: 'https://prasadyash2411.github.io/ecom-website/img/Album%202.png',
-    quantity: 2,
-  },
-  {
-    title: 'Yellow and Black Colors',
-    price: 70,
-    imageUrl: 'https://prasadyash2411.github.io/ecom-website/img/Album%203.png',
-    quantity: 2,
-  },
-  {
-    title: 'Blue Color',
-    price: 100,
-    imageUrl: 'https://prasadyash2411.github.io/ecom-website/img/Album%204.png',
-    quantity: 2,
-  },
-];
-
-export const Cart = () => { // Export Cart component
-  const [showCart, setShowCart] = useState(false);
-  const [cartElements, setCartElements] = useState(initialCartElements);
+export const Cart = ({ cartItems = [], removeItem }) => {
+  const [showCart, setShowCart] = React.useState(false);
 
   const handleClose = () => setShowCart(false);
   const handleShow = () => setShowCart(true);
 
-  const removeItem = (index) => {
-    const updatedCart = [...cartElements];
-    updatedCart.splice(index, 1);
-    setCartElements(updatedCart);
-  };
-
-  const totalItemsInCart = cartElements.reduce((total, item) => total + item.quantity, 0);
+  const totalItemsInCart = cartItems.reduce((total, item) => total + item.quantity, 0);
 
   return (
     <>
-      <Button variant="contained" style={{ color: 'yellow',fontFamily: 'Algerian', fontSize: '20px' }} className='abc' type='submit' onClick={handleShow}>
+      <Button variant="contained" style={{ color: 'yellow', fontFamily: 'Algerian', fontSize: '20px' }} className='abc' type='submit' onClick={handleShow}>
         Cart <sup>{totalItemsInCart}</sup>
       </Button>
 
@@ -66,7 +33,7 @@ export const Cart = () => { // Export Cart component
               </tr>
             </thead>
             <tbody>
-              {cartElements.map((item, index) => (
+              {cartItems.map((item, index) => (
                 <tr key={index}>
                   <td><img src={item.imageUrl} alt={item.title} style={{ width: '50px', height: '50px' }} /></td>
                   <td>{item.title}</td>
