@@ -1,46 +1,62 @@
-// Cart.js
-import React from 'react';
-import { Button, Modal, Table } from 'react-bootstrap';
-import './Cart.css';
+import { useContext, useState } from "react";
+import Button from "react-bootstrap/Button";
+import Modal from "react-bootstrap/Modal";
+import Table from "react-bootstrap/Table";
+import Image from "react-bootstrap/Image";
+import CartContext from "./Context/Cart-Context";
+import "./Cart.css";
 
-export const Cart = ({ cartItems = [], removeItem }) => {
-  const [showCart, setShowCart] = React.useState(false);
 
-  const handleClose = () => setShowCart(false);
-  const handleShow = () => setShowCart(true);
+function Cart() {
+  const { items, removeItem } = useContext(CartContext);
+  console.log("incart", items);
+ 
 
-  const totalItemsInCart = cartItems.reduce((total, item) => total + item.quantity, 0);
+  const [show, setShow] = useState(false);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+
+  const removeItemHandler = (id) => {
+    removeItem(id);
+  };
 
   return (
     <>
-      <Button variant="contained" style={{ color: 'yellow', fontFamily: 'Algerian', fontSize: '20px' }} className='abc' type='submit' onClick={handleShow}>
-        Cart <sup>{totalItemsInCart}</sup>
+      <Button variant="light" onClick={handleShow}>
+        Cart Items
       </Button>
-
-      <Modal show={showCart} onHide={handleClose} dialogClassName="modal-right">
+      
+      <Modal show={show} onHide={handleClose}  size="lg">
         <Modal.Header closeButton>
-          <Modal.Title style={{ fontFamily: 'Algerian', fontWeight: 'bold', fontSize: '24px' }}>CART</Modal.Title>
+          <Modal.Title>Items</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <Table striped bordered hover>
+          <Table responsive striped bordered hover size="lg">
             <thead>
               <tr>
                 <th>Image</th>
                 <th>Item</th>
                 <th>Price</th>
-                <th>Quantity</th>
                 <th>Remove</th>
               </tr>
             </thead>
             <tbody>
-              {cartItems.map((item, index) => (
+              {items.map((item, index) => (
                 <tr key={index}>
-                  <td><img src={item.imageUrl} alt={item.title} style={{ width: '50px', height: '50px' }} /></td>
-                  <td>{item.title}</td>
-                  <td>${item.price.toFixed(2)}</td>
-                  <td>{item.quantity}</td>
                   <td>
-                    <Button variant="danger" onClick={() => removeItem(index)}>
+                    <Image
+                      src={item.imageUrl}
+                      style={{ width: "70px", height: "70px" }}
+                    />
+                  </td>
+                  <td>{item.title}</td>
+                  <td>Rs-{item.price}</td>
+                  <td>
+                    <Button
+                      variant="danger"
+                      onClick={() => removeItemHandler(item.title)}
+                    >
                       Remove
                     </Button>
                   </td>
@@ -53,13 +69,11 @@ export const Cart = ({ cartItems = [], removeItem }) => {
           <Button variant="secondary" onClick={handleClose}>
             Close
           </Button>
-          <Button variant="primary">
-            Purchase
-          </Button>
+          <Button variant="primary">Buy</Button>
         </Modal.Footer>
       </Modal>
     </>
   );
-};
+}
 
 export default Cart;
