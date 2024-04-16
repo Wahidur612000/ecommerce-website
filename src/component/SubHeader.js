@@ -4,8 +4,8 @@ import Cart from './Cart';
 
 const SubHeader = () => {
   return (
-    <div>
-
+    <div className="justify-content-center">
+    
     <Navbar bg="dark" variant="black" expand="lg">
     <h1 className="mt-5 mb-3" style={{ fontFamily: 'Algerian', fontWeight: 'bold', fontSize: '60px', color: 'yellow' }}>
             Sale Spot

@@ -4,8 +4,9 @@ import { Container, Row, Col, Card, Button } from 'react-bootstrap';
 import { useContext } from 'react';
 import CartContext from './Context/Cart-Context';
 import SubHeader from './SubHeader';
-import {  Navbar, Nav } from 'react-bootstrap';
-import Cart from './Cart'; 
+import Footer from './Footer';
+
+
 
 
 const productsArr = [
@@ -13,22 +14,26 @@ const productsArr = [
     title: 'Colors',
     price: 100,
     imageUrl: 'https://prasadyash2411.github.io/ecom-website/img/Album%201.png',
+    quantity: 1,
     
   },
   {
     title: 'Black and white Colors',
     price: 50,
     imageUrl: 'https://prasadyash2411.github.io/ecom-website/img/Album%202.png',
+    quantity: 1,
   },
   {
     title: 'Yellow and Black Colors',
     price: 70,
     imageUrl: 'https://prasadyash2411.github.io/ecom-website/img/Album%203.png',
+    quantity: 1,
   },
   {
     title: 'Blue Color',
     price: 100,
     imageUrl: 'https://prasadyash2411.github.io/ecom-website/img/Album%204.png',
+    quantity: 1,
   },
 ];
 
@@ -41,7 +46,7 @@ const Store = () => {
           title:event.title,
           price:event.price,
           imageUrl:event.imageUrl,
-          
+          quantity:event.quantity,
         }
         StoreContext.addItem(items);
         console.log("instore", items);
@@ -53,17 +58,6 @@ const Store = () => {
     <div>
       <SubHeader />
       <div className="d-flex flex-column">
-        {/* <div className="bg-dark text-center">
-          <h1 className="mt-5 mb-3" style={{ fontFamily: 'Algerian', fontWeight: 'bold', fontSize: '80px', color: 'yellow' }}>
-            Sale Spot
-          </h1>
-          <Navbar>
-          <Nav.Link href="" style={{ fontFamily: 'Algerian', fontSize: '20px', color: 'yellow' }}>
-            <Cart />
-          </Nav.Link>
-        </Navbar>
-        </div> */}
-
         <div className="bg-white" style={{ height: '2px' }}></div>
       </div>
 
@@ -85,6 +79,7 @@ const Store = () => {
           ))}
         </Row>
       </Container>
+      <Footer />
     </div>
   );
 };

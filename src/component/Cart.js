@@ -21,11 +21,17 @@ function Cart() {
     removeItem(id);
   };
 
+  let qty = 0;
+  items.map((item) => {
+    qty = qty + Number(item.quantity);
+  });
+
   return (
     <>
-      <Button variant="light" onClick={handleShow}>
-        Cart Items
+      <Button variant="dark" onClick={handleShow} style={{ fontFamily: 'Algerian', fontWeight: 'bold', fontSize: '20px', color: 'yellow' }}>
+        Cart <sup style={{ fontFamily: 'Algerian', fontWeight: 'bold', fontSize: '14px', color: 'white' }}>{qty}</sup>
       </Button>
+
       
       <Modal show={show} onHide={handleClose}  size="lg">
         <Modal.Header closeButton>
@@ -38,6 +44,7 @@ function Cart() {
                 <th>Image</th>
                 <th>Item</th>
                 <th>Price</th>
+                <th>Quantity</th>
                 <th>Remove</th>
               </tr>
             </thead>
@@ -52,6 +59,7 @@ function Cart() {
                   </td>
                   <td>{item.title}</td>
                   <td>Rs-{item.price}</td>
+                  <td>{item.quantity}</td>
                   <td>
                     <Button
                       variant="danger"
