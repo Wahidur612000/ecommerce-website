@@ -34,7 +34,7 @@ const Home = () => {
           Sale Spot
         </h1>
       </div>
-      <br></br><br></br>
+      <br /><br />
       <div className="bg-white" style={{ height: '2px' }} />
       
       <h1
@@ -48,16 +48,16 @@ const Home = () => {
         Tours
       </h1>
 
-      <div className=" align-items-center justify-content-center text-center">
+      <div className="align-items-center justify-content-center text-center">
         {dummy.map((item, key) => (
-          <ul keys={key}>
+          <ul key={key}>
             <span>{item.date}-</span>
             <span>{item.place}-</span>
             <span>
               {item.add}
               {"   "}
             </span>
-            <Button variant="primary" className=" align-items-right justify-content-center text-right" > Buy Ticket</Button>
+            <Button variant="primary" className="align-items-right justify-content-center text-right" > Buy Ticket</Button>
             <div>
               {
                 "__________________________________________________________________________"
@@ -66,7 +66,8 @@ const Home = () => {
           </ul>
         ))}
       </div>
-      <div ><Footer /></div>
+      <br /><br /><br /><br />
+      <Footer />
     </div>
   );
 };

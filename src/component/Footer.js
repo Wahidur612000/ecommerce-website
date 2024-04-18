@@ -3,20 +3,20 @@ import Image from "react-bootstrap/Image";
 
 const Footer = (props) => {
   return (
-    <Navbar variant="dark" bg="dark" expand="lg" fixed="bottom" style={{ zIndex: '1', position: 'relative' }}>
+    <Navbar variant="dark" bg="dark" expand="lg" fixed="bottom">
         <Container>
-          <h1 className="mt-5 mb-3" style={{ fontFamily: 'Algerian', fontWeight: 'bold', fontSize: '40px', color: 'yellow' }}>Sale Spot</h1>
+          <h1 style={{ fontFamily: 'Algerian', fontWeight: 'bold', fontSize: '24px', color: 'yellow' }}>Sale Spot</h1>
           <Navbar.Toggle />
           <Navbar.Collapse className="justify-content-end">
-            <div>{"---"}</div>
-            <a href="https://www.youtube.com/">
+            <a href="https://www.youtube.com/" target="_blank" rel="noopener noreferrer">
               <Image
                 src="https://help.runcfs.com/hubfs/Smart%20Objects/smart56.2.png"
+                alt="YouTube"
                 style={{
-                  width: "300px",
+                  width: "100px",
                   height: "auto",
                 }}
-              ></Image>
+              />
             </a>
           </Navbar.Collapse>
         </Container>

@@ -1,6 +1,5 @@
 import React from 'react';
 import {  Navbar, Nav } from 'react-bootstrap';
-import Cart from './Cart'; // Import the Cart component
 
 const Header = () => {
   return (
@@ -17,6 +16,9 @@ const Header = () => {
           </Nav.Link>
           <Nav.Link href="/About" style={{ fontFamily: 'Algerian', fontSize: '20px', color: 'yellow' }}>
             ABOUT
+          </Nav.Link>
+          <Nav.Link href="/Contact-Us" style={{ fontFamily: 'Algerian', fontSize: '20px', color: 'yellow' }}>
+            Contact US
           </Nav.Link>
         </Nav>
       </Navbar.Collapse>
