@@ -1,0 +1,23 @@
+.productcard {
+    transition: transform 0.2s; /* Add transition for smooth effect */
+  }
+  
+  .productcard:hover {
+    transform: scale(1.2); /* Zoom effect on hover */
+    cursor: zoom-in;
+  }
+  
+  .image-container {
+    overflow: hidden; /* Hide overflowing parts */
+    height: 200px; /* Set desired height for image container */
+  }
+  
+  .productimage {
+    transition: transform 0.2s; /* Add transition for smooth effect */
+  }
+  
+  .productimage:hover {
+    transform: scale(1.2); /* Zoom effect on hover */
+    cursor: zoom-in;
+  }
+  

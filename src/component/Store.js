@@ -1,13 +1,10 @@
-// Store.js
 import React from 'react';
 import { Container, Row, Col, Card, Button } from 'react-bootstrap';
 import { useContext } from 'react';
 import CartContext from './Context/Cart-Context';
 import SubHeader from './SubHeader';
+import classes from "./Store.module.css";
 import Footer from './Footer';
-
-
-
 
 const productsArr = [
   {
@@ -15,7 +12,6 @@ const productsArr = [
     price: 100,
     imageUrl: 'https://prasadyash2411.github.io/ecom-website/img/Album%201.png',
     quantity: 1,
-    
   },
   {
     title: 'Black and white Colors',
@@ -38,41 +34,33 @@ const productsArr = [
 ];
 
 const Store = () => {
+  const StoreContext = useContext(CartContext);
 
-  const StoreContext=useContext(CartContext);
-
-  const addItemToCart=(event)=>{
-        const items= {
-          title:event.title,
-          price:event.price,
-          imageUrl:event.imageUrl,
-          quantity:event.quantity,
-        }
-        StoreContext.addItem(items);
-        console.log("instore", items);
+  const addItemToCart = (event) => {
+    const items = {
+      title: event.title,
+      price: event.price,
+      imageUrl: event.imageUrl,
+      quantity: event.quantity,
+    }
+    StoreContext.addItem(items);
+    console.log("instore", items);
   }
-  
-
 
   return (
     <div>
       <SubHeader />
-      <div className="d-flex flex-column">
-        <div className="bg-white" style={{ height: '2px' }}></div>
-      </div>
-
       <Container className="bg-white p-3">
         <h1 className="mt-5 mb-3 text-center" style={{ fontFamily: 'Algerian', fontSize: '40px' }}>Products</h1>
         <Row>
-          
           {productsArr.map((product, index) => (
-            <Col key={index} xs={12} md={6} lg={6} className="mb-4">
+            <Col key={index} xs={12} md={6} lg={3} className="mb-2">
               <Card>
-                <Card.Img variant="top" src={product.imageUrl} />
+                <Card.Title style={{ fontFamily: 'Algerian', fontSize: '20px' }}>{product.title}</Card.Title>
+                <Card.Img variant="top" className={classes.productcard} src={product.imageUrl} />
                 <Card.Body>
-                  <Card.Title>{product.title}</Card.Title>
                   <Card.Text>Rs {product.price}</Card.Text>
-                  <Button variant="primary" onClick={() =>addItemToCart(product) }>Add to Cart</Button>
+                  <Button variant="primary" onClick={() => addItemToCart(product)}>Add to Cart</Button>
                 </Card.Body>
               </Card>
             </Col>

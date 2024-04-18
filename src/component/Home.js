@@ -34,6 +34,7 @@ const Home = () => {
           Sale Spot
         </h1>
       </div>
+      <br></br><br></br>
       <div className="bg-white" style={{ height: '2px' }} />
       
       <h1
