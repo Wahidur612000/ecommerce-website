@@ -50,8 +50,8 @@ const Store = () => {
   return (
     <div>
       <SubHeader />
-      <Container className="bg-white p-3">
-        <h1 className="mt-5 mb-3 text-center" style={{ fontFamily: 'Algerian', fontSize: '40px' }}>Products</h1>
+      <Container className="bg-white p-3" style={{ marginTop: '20px', marginBottom: '20px' }}>
+        <h1 className="mt-3 mb-3 text-center" style={{ fontFamily: 'Algerian', fontSize: '40px' }}>Products</h1>
         <Row>
           {productsArr.map((product, index) => (
             <Col key={index} xs={12} md={6} lg={3} className="mb-2">

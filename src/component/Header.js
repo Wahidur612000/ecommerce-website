@@ -1,7 +1,14 @@
-import React from 'react';
+import React , { useState }from 'react';
 import {  Navbar, Nav } from 'react-bootstrap';
 
 const Header = () => {
+  const [isLoggedIn, setIsLoggedIn] = useState(false); // State to track authentication status
+
+  
+  const handleLogout = () => {
+    
+    setIsLoggedIn(false);
+  };
   return (
     <div>
     <Navbar bg="black" variant="black" expand="lg">
@@ -22,11 +29,17 @@ const Header = () => {
           </Nav.Link>
         </Nav>
       </Navbar.Collapse>
-      {/* <Navbar>
-        <Nav.Link href="" style={{ fontFamily: 'Algerian', fontSize: '20px', color: 'yellow' }}>
-            <Cart />
-        </Nav.Link>
-      </Navbar> */}
+      <Navbar>
+      {isLoggedIn ? (
+            <Nav.Link onClick={handleLogout} style={{ fontFamily: 'Algerian', fontSize: '20px', color: 'yellow' }}>
+              Logout
+            </Nav.Link>
+          ) : (
+            <Nav.Link href="/Login" style={{ fontFamily: 'Algerian', fontSize: '20px', color: 'yellow' }}>
+              Login
+            </Nav.Link>
+          )}
+      </Navbar>
     </Navbar>
     {/* <div style={{ borderBottom: '2px solid white' }} /> */}
     </div>
