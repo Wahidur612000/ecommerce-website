@@ -1,14 +1,13 @@
-import React , { useState }from 'react';
+import React , { useContext }from 'react';
 import {  Navbar, Nav } from 'react-bootstrap';
+import CartContext from './Context/Cart-Context';
 
 const Header = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false); // State to track authentication status
-
+ 
+  const headerctx=useContext(CartContext);
+  const isLoggedIn=headerctx.isLoggedIn;
   
-  const handleLogout = () => {
-    
-    setIsLoggedIn(false);
-  };
+  
   return (
     <div>
     <Navbar bg="black" variant="black" expand="lg">
@@ -30,15 +29,20 @@ const Header = () => {
         </Nav>
       </Navbar.Collapse>
       <Navbar>
-      {isLoggedIn ? (
-            <Nav.Link onClick={handleLogout} style={{ fontFamily: 'Algerian', fontSize: '20px', color: 'yellow' }}>
+      {!isLoggedIn && 
+        <Nav.Link href="/Login" style={{ fontFamily: 'Algerian', fontSize: '20px', color: 'yellow' }}>
+        Login
+        </Nav.Link>
+      }
+      {isLoggedIn && 
+        <Nav.Link href="/Login" style={{ fontFamily: 'Algerian', fontSize: '20px', color: 'yellow' }}>
+        Logout
+        </Nav.Link>
+      }
+            {/* <Nav.Link href="/Login" style={{ fontFamily: 'Algerian', fontSize: '20px', color: 'yellow' }}>
               Logout
-            </Nav.Link>
-          ) : (
-            <Nav.Link href="/Login" style={{ fontFamily: 'Algerian', fontSize: '20px', color: 'yellow' }}>
-              Login
-            </Nav.Link>
-          )}
+            </Nav.Link> */}
+
       </Navbar>
     </Navbar>
     {/* <div style={{ borderBottom: '2px solid white' }} /> */}

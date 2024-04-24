@@ -8,7 +8,7 @@ const CartProvider=(props=>{
     const addItemHandler=(item)=>{
 
         setItems([...items,item]);
-        console.log("inprovider", items);
+        
     }
 
     const removeItemHandler=(id)=>{
@@ -21,6 +21,7 @@ const CartProvider=(props=>{
 
     const loginHandler=(token)=>{
         setToken(token);
+        console.log("inloginhandler",token);
     }
     const logoutHandler=()=>{
         setToken(null);

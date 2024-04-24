@@ -1,6 +1,7 @@
-import { useState, useRef } from 'react';
+import { useState, useRef,useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import classes from './Login.module.css';
+import CartContext from '../Context/Cart-Context';
 
 
 const Login = () => {
@@ -11,6 +12,8 @@ const Login = () => {
 
   const [isLogin, setIsLogin] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
+
+  const loginctx=useContext(CartContext)
  
 
   const switchAuthModeHandler = () => {
@@ -23,6 +26,7 @@ const Login = () => {
     const enteredPassword=passwordInputRef.current.value;
 
     setIsLoading(true);
+    console.log("before loading",isLoading);
     let url;
     if(isLogin){
        url='https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyABaG4S_aphDMO1LCWGC_o8rfNrqtaDdgw';
@@ -44,25 +48,27 @@ const Login = () => {
         }
       ).then(res =>{
         setIsLoading(false);
+        console.log("loading",isLoading);
         if(res.ok){
             return res.json();
         } else{
-            res.json().then(data =>{
+           return res.json().then(data =>{
                 let errorMessage='Authenticate failed';
-                if(data && data.error && data.error.message){
-                    errorMessage=data.error.message;
-                }
+                // if(data && data.error && data.error.message){
+                //     errorMessage=data.error.message;
+                // }
                 throw new Error (errorMessage);
             });
         }
       }).then(data =>{
-        console.log(data);
+        loginctx.token=data.idToken;
+        loginctx.login(data.idToken);
         emailInputRef.current.value = '';
-    passwordInputRef.current.value = '';
-    navigate('/store');
+        passwordInputRef.current.value = '';
+        navigate('/store');
       })
       .catch((err)=>{
-        alert(err.Message);
+        alert(err);
       });
 
   };
@@ -86,7 +92,7 @@ const Login = () => {
         </div>
         <div className={classes.actions}>
         {!isLoading && <button>{isLogin ? 'Login' : 'Create Account'}</button>} 
-        {isLoading && <p>Loading...</p>}
+        {isLoading && <p>Loading...........</p> }{console.log("after loading",isLoading)}
           <button
             type='button'
             className={classes.toggle}
