@@ -7,7 +7,8 @@ const CartContext=React.createContext({
     token:'',
     isLoggedIn:false,
     login:(token)=>{},
-    logout:()=>{}
+    logout:()=>{},
+    profile:(token)=>{},
 });
 
 

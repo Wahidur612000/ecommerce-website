@@ -6,6 +6,10 @@ const Header = () => {
  
   const headerctx=useContext(CartContext);
   const isLoggedIn=headerctx.isLoggedIn;
+
+  const logoutHandler=()=>{
+    headerctx.logout();
+  };
   
   
   return (
@@ -35,17 +39,19 @@ const Header = () => {
         </Nav.Link>
       }
       {isLoggedIn && 
-        <Nav.Link href="/Login" style={{ fontFamily: 'Algerian', fontSize: '20px', color: 'yellow' }}>
+        <Nav.Link href="/Login" onClick={logoutHandler} style={{ fontFamily: 'Algerian', fontSize: '20px', color: 'yellow',marginRight: '10px' }}>
         Logout
         </Nav.Link>
       }
-            {/* <Nav.Link href="/Login" style={{ fontFamily: 'Algerian', fontSize: '20px', color: 'yellow' }}>
-              Logout
-            </Nav.Link> */}
+      {isLoggedIn && 
+        <Nav.Link href="/Profile" style={{ fontFamily: 'Algerian', fontSize: '20px', color: 'yellow' }}>
+        Profile
+        </Nav.Link>
+      }
 
       </Navbar>
     </Navbar>
-    {/* <div style={{ borderBottom: '2px solid white' }} /> */}
+    
     </div>
   );
 };

@@ -8,7 +8,7 @@ const Footer = (props) => {
           <h1 style={{ fontFamily: 'Algerian', fontWeight: 'bold', fontSize: '24px', color: 'yellow' }}>Sale Spot</h1>
           <Navbar.Toggle />
           <Navbar.Collapse className="justify-content-end">
-            <a href="https://www.youtube.com/" target="_blank" rel="noopener noreferrer">
+            <a href="https://www.youtube.com/@salespot5413" target="_blank" rel="noopener noreferrer">
               <Image
                 src="https://help.runcfs.com/hubfs/Smart%20Objects/smart56.2.png"
                 alt="YouTube"

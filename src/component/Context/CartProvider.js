@@ -26,7 +26,10 @@ const CartProvider=(props=>{
     const logoutHandler=()=>{
         setToken(null);
     }
-
+    const profileHandler=(token)=>{
+        setToken(token);
+    }
+console.log('cartprovider',token)
 
 
     const cartContext={
@@ -37,6 +40,7 @@ const CartProvider=(props=>{
         isLoggedIn:userIsLoggedIn,
         login:loginHandler,
         logout:logoutHandler,
+        profile:profileHandler,
     }
 
     return (
