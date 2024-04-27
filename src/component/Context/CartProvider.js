@@ -14,21 +14,21 @@ const CartProvider=(props=>{
     const removeItemHandler=(id)=>{
         setItems(items.filter((item)=>item.title!==id))
     }
-
-    const[token,setToken]=useState(null);
+const initialToken=localStorage.getItem('token');
+    const[token,setToken]=useState(initialToken);
 
     const userIsLoggedIn=!!token;
 
     const loginHandler=(token)=>{
         setToken(token);
         console.log("inloginhandler",token);
+        localStorage.setItem('token',token);
     }
     const logoutHandler=()=>{
         setToken(null);
+        localStorage.removeItem('token');
     }
-    const profileHandler=(token)=>{
-        setToken(token);
-    }
+    
 console.log('cartprovider',token)
 
 
@@ -40,7 +40,6 @@ console.log('cartprovider',token)
         isLoggedIn:userIsLoggedIn,
         login:loginHandler,
         logout:logoutHandler,
-        profile:profileHandler,
     }
 
     return (

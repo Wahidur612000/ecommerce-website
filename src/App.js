@@ -26,6 +26,7 @@ function App() {
         <Route path="/Contact-Us" element={<ContactUs />} />
         <Route path="/Login" element={<Login />} />
         <Route path="/Profile" element={<ProfilePage />} />
+        <Route path='*' element={<Home />}></Route>
       </Routes> 
     </>
   );

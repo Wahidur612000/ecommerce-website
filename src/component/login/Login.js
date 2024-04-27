@@ -63,7 +63,6 @@ const Login = () => {
       }).then(data =>{
         loginctx.token=data.idToken;
         loginctx.login(data.idToken);
-        loginctx.profile(data.idToken);
         emailInputRef.current.value = '';
         passwordInputRef.current.value = '';
         navigate('/Store');
