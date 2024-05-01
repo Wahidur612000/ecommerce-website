@@ -1,4 +1,4 @@
-import React,{useContext} from 'react';
+import React,{useContext,Suspense} from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {  Route, Routes,Navigate } from 'react-router-dom'; // Changed Switch to Routes
 import Header from './component/Header';
@@ -15,8 +15,11 @@ function App() {
   const appctx=useContext(CartContext);
   const isLoggedIn=appctx.isLoggedIn;
   
+  const About=React.lazy(()=> import('./component/About'));
+
   return (
     <>
+      <Suspense>
       <Header />
       <Routes> 
         <Route path="/" element={<Home />} /> 
@@ -28,6 +31,7 @@ function App() {
         <Route path="/Profile" element={<ProfilePage />} />
         <Route path='*' element={<Home />}></Route>
       </Routes> 
+      </Suspense>
     </>
   );
 }
