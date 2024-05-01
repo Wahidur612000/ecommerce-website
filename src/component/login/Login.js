@@ -26,7 +26,6 @@ const Login = () => {
     const enteredPassword=passwordInputRef.current.value;
 
     setIsLoading(true);
-    console.log("before loading",isLoading);
     let url;
     if(isLogin){
        url='https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyABaG4S_aphDMO1LCWGC_o8rfNrqtaDdgw';
@@ -61,8 +60,13 @@ const Login = () => {
             });
         }
       }).then(data =>{
+
+        localStorage.setItem('email', data.email);
         loginctx.token=data.idToken;
         loginctx.login(data.idToken);
+
+       // console.log('login',data)
+
         emailInputRef.current.value = '';
         passwordInputRef.current.value = '';
         navigate('/Store');
@@ -92,7 +96,7 @@ const Login = () => {
         </div>
         <div className={classes.actions}>
         {!isLoading && <button>{isLogin ? 'Login' : 'Create Account'}</button>} 
-        {isLoading && <p>Loading...........</p> }{console.log("after loading",isLoading)}
+        {isLoading && <p>Loading...........</p> }
           <button
             type='button'
             className={classes.toggle}

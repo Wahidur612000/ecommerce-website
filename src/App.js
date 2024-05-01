@@ -14,7 +14,7 @@ import ProfilePage from './component/login/ProfilePage';
 function App() {
   const appctx=useContext(CartContext);
   const isLoggedIn=appctx.isLoggedIn;
-  console.log("in app",isLoggedIn)
+  
   return (
     <>
       <Header />
